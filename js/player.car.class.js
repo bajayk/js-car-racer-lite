@@ -31,12 +31,12 @@ export default class PlayerCar{
     }
 
     moveLeft(){
-        this._positionX -= 5;   
+        this._positionX -= 10;   
         if(this._positionX <= 150) this._positionX = 150;     
     }
 
     moveRight(){
-        this._positionX += 5;
+        this._positionX += 10;
         if(this._positionX >= 300) this._positionX = 300;
     }
 
