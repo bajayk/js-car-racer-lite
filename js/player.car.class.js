@@ -5,13 +5,23 @@ export default class PlayerCar{
         this._positionX = 225;
         this._positionY = 650;
         this._speed = 0;
-        this.maxSpeed = 120;        
+        this.maxSpeed = 120;  
+        this.carWidth = 60;
+        this.carLength = 124;      
         this.init();        
     }
 
     init(){
         this.car = new Image;
         this.car.src = "./images/player_car.png";
+    }
+
+    get width(){
+        return this.carWidth;
+    }
+
+    get length(){
+        return this.carLength;
     }
 
     get positionX(){
@@ -30,13 +40,18 @@ export default class PlayerCar{
         this._positionY = positionY
     }
 
+    resetPosition(){
+        this._positionX = 225;
+        this._positionY = 650;
+    }
+
     moveLeft(){
-        this._positionX -= 10;   
+        this._positionX -= 75;   
         if(this._positionX <= 150) this._positionX = 150;     
     }
 
     moveRight(){
-        this._positionX += 10;
+        this._positionX += 75;
         if(this._positionX >= 300) this._positionX = 300;
     }
 
