@@ -97,22 +97,18 @@
             top:50%;
             left:50%;
             transform: translate(-50%, -50%);
+            width: inherit;
+            height: inherit;
         }
 
-        #scoreboard .inner-board .messages .btn-try-again{
-            color:white;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            font-size: 36px;
-            border: solid thin black;
-            background-color: brown;
-            padding: 10px 50px;
-            cursor: pointer;
+        #scoreboard .inner-board .messages .try-again{
+            background-image:url('./images/try-again-screen.png');
+            width:inherit;
+            height: inherit;
             display:none;
         }
 
-        #scoreboard .inner-board .messages .btn-try-again:hover{
-            background-color: crimson;
-        }
+       
 
     </style>
     <script src="./js/index.js" defer type="module"></script>
@@ -156,8 +152,8 @@
             </div><!-- distance-meter -->
 
             <div class="messages">
-                <div class="btn-try-again">
-                    Try Again
+                <div class="try-again">
+                    
                 </div>
             </div>
 

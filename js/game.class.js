@@ -34,12 +34,18 @@ export default class Game{
     }
 
     tryAgain(e){
+
+        if(e.keyCode !== 32){
+            return;
+        }
+
         this.traffic = [];
         this.playerCar.resetPosition();
-        this.playerCar.speed = 0;
+        this.playerCar.speed = 10;
         this.pause = false;
-        let btnTryAgain = document.querySelector(".btn-try-again");
-        btnTryAgain.style.display = "none";
+        let screenTryAgain = document.querySelector(".try-again");
+        screenTryAgain.style.display = "none";
+        document.onkeydown = null;
     }
 
     update(){ 
@@ -55,9 +61,9 @@ export default class Game{
         if(isCollide(this.playerCar, this.traffic)){
             
             this.pause = true;
-            let btnTryAgain = document.querySelector(".btn-try-again");
-            btnTryAgain.style.display = "block";
-            btnTryAgain.addEventListener("click", e => this.tryAgain(e));
+            let screenTryAgain = document.querySelector(".try-again");
+            screenTryAgain.style.display = "block";
+            document.onkeydown = e => this.tryAgain(e);
             
         }
     }

@@ -4,7 +4,7 @@ export default class PlayerCar{
         this.context = this.game.context;
         this._positionX = 225;
         this._positionY = 650;
-        this._speed = 0;
+        this._speed = 10;
         this.maxSpeed = 120;  
         this.carWidth = 60;
         this.carLength = 124;      
