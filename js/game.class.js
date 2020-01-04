@@ -4,6 +4,7 @@ import PlayerCar from './player.car.class.js';
 import TrafficCar from './traffic.car.class.js';
 import Road from './road.class.js';
 import { isCollide } from './utilities.js';
+import Dashboard from './dashboard.class.js';
 
 export default class Game{
 
@@ -11,6 +12,7 @@ export default class Game{
         this.context = context;    
         this.playerCar = new PlayerCar(this);
         this.road = new Road(this);
+        this.dashboard = new Dashboard(this);
         this.traffic = [];      
         new Controller({road:this.road, playerCar:this.playerCar});
 
@@ -49,9 +51,12 @@ export default class Game{
     }
 
     update(){ 
+        this.dashboard.updateTime();
+
         if(this._paused) return;
 
         this.road.update();
+        this.dashboard.update();
         this.playerCar.update();
        // this.trafficCar.update();
         this.traffic.forEach(car => {

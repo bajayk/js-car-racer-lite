@@ -9,8 +9,11 @@ requestAnimationFrame(gameLoop);
 
 
 
-function gameLoop(){    
+
+function gameLoop(timestamp){    
+
+    
     game.update();
+   
     requestAnimationFrame(gameLoop);
 }
-
