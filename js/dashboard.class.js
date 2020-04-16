@@ -9,6 +9,9 @@ export default class Dashboard{
         this.startTime = this.then = Date.now();
         
         this.distanceTraveled = 0;
+
+        this.distanceRemaining = this.game.raceDistance;
+        this.elapsedTime = "";
     }
 
 
@@ -28,7 +31,9 @@ export default class Dashboard{
         let mili = Math.floor(miliseconds/100);
         mili = mili < 10 ? '0' + mili : mili;
 
-        this.timeMeter.innerHTML = `TIME LAPSED: ${hours}:${minutes}:${seconds}:${mili}`;
+        this.elapsedTime = `${hours}:${minutes}:${seconds}:${mili}`;
+
+        this.timeMeter.innerHTML = `TIME ELAPSED: ${this.elapsedTime}`;
 
     }
 
@@ -45,7 +50,10 @@ export default class Dashboard{
 
             this.then = this.now;
 
-            this.distanceMeter.innerHTML = (10 - (this.distanceTraveled/1000)).toFixed(1) + ' KMs';
+            this.distanceRemaining = (this.game.raceDistance - (this.distanceTraveled/1000)).toFixed(1)
+
+            this.distanceMeter.innerHTML = this.distanceRemaining + ' KMs';
+
         }
     }
 

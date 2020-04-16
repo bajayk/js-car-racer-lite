@@ -108,7 +108,40 @@
             display:none;
         }
 
-       
+        #scoreboard .inner-board .messages .game-over{
+            font-family: 'Hobo Std Medium';
+            color:red;
+            font-size: 72px;
+            text-align: center;
+            
+            padding-top: 30%;
+            width:inherit;
+            height: inherit;
+            display:none;
+        }
+
+        #scoreboard .inner-board .messages .game-over .game-over-message{
+            font-size: 24px;
+            color:black;
+            background-color:rgba(182, 231, 137, 0.5);
+            padding: 10px;
+            margin: 0px 30px;
+        }
+        #scoreboard .inner-board .messages .game-over .time-taken{
+            font-family: 'OCR A Std';
+            font-size: 36px;
+            color:white;
+            background-color:black;
+            padding: 20px;
+            padding-bottom: 10px;
+            margin: 10px 50px;
+        }
+
+        #scoreboard .inner-board .messages .game-over button{
+            font-family: 'Hobo Std Medium';
+            font-size: 36px;
+            border-radius: 5px;
+        }
 
     </style>
     <script src="./js/index.js" defer type="module"></script>
@@ -153,7 +186,13 @@
 
             <div class="messages">
                 <div class="try-again">
-                    
+                </div>
+                <div class="game-over">
+                    <div>Game Over</div>
+                    <div class="game-over-message">You have finished the race in</div>
+                    <div class="time-taken">00:00:00:00</div>
+                    <div class="game-over-message min-message">Minimum time recored before - 00:00:00:00</div>
+                    <button>Race Again</button>
                 </div>
             </div>
 

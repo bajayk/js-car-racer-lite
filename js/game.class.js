@@ -13,12 +13,14 @@ export default class Game{
         this.playerCar = new PlayerCar(this);
         this.road = new Road(this);
         this.dashboard = new Dashboard(this);
+        this.raceDistance = 1;
         this.traffic = [];      
         new Controller({road:this.road, playerCar:this.playerCar});
 
         setInterval(()=>this.populateTraffic(), 5000);
 
         this._paused = false;
+        this._gameOver = false;
     }
 
     populateTraffic(){       
@@ -51,12 +53,31 @@ export default class Game{
     }
 
     update(){ 
+
+        if(this._gameOver) return;
+
         this.dashboard.updateTime();
 
         if(this._paused) return;
 
         this.road.update();
         this.dashboard.update();
+
+        if(this.dashboard.distanceRemaining <= 0){
+            this._gameOver = true;
+            this.pause = true;
+            let screenGameOver = document.querySelector(".game-over");
+            screenGameOver.style.display = "block";
+            this.recordTime();
+
+            let screenTimeTaken = document.querySelector('.time-taken');
+            screenTimeTaken.innerHTML = this.dashboard.elapsedTime;
+
+            let screenMinTime = document.querySelector('.min-message');
+            screenMinTime.innerHTML = "Minimum time recored before - " + this.getMinTimeTaken();
+
+        }
+
         this.playerCar.update();
        // this.trafficCar.update();
         this.traffic.forEach(car => {
@@ -71,6 +92,36 @@ export default class Game{
             document.onkeydown = e => this.tryAgain(e);
             
         }
+    }
+
+    recordTime(){
+
+        if(localStorage.getItem("score") === null){
+            localStorage.setItem("score", JSON.stringify([]));
+        }
+
+        //console.log(localStorage.getItem("score"));
+
+        let time = this.dashboard.elapsedTime;
+
+        let scores = JSON.parse(localStorage.getItem("score"));
+
+        scores.push(time);
+
+        localStorage.setItem("score", JSON.stringify(scores));
+
+    }
+
+    getMinTimeTaken(){
+        let scores = JSON.parse(localStorage.getItem("score"));
+
+        console.log(scores);
+        let min = scores.reduce((previousItem, currentItem) => {
+            return previousItem < currentItem ? previousItem : currentItem;
+        });
+
+        console.log(min);
+        return min;
     }
 
 }
